@@ -26,18 +26,18 @@ const TripList=()=>{
         getData();
      },[])
 
-     const deleteTrip=async(id)=>{
-        await fetch(`${url}/trips/delete/${id}`,{
-          method:'DELETE',
-          headers:{
-            'Content-Type': 'application/json'
-          }
-        });
-
-        getData();
-      }
+    const deleteTrip=async(id)=>{
+      let res= await fetch(`${url}/trips/delete/${id}`,{
+        method:'DELETE',
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      });
+      
+    }
 
     return(
+    //  <div> <button>H</button></div> 
         <div className='trips'>
           <h1>All Trips</h1>
           <ul>
@@ -46,7 +46,7 @@ const TripList=()=>{
         <li>Destination</li>
         <li>Members</li>
         <li>Budget</li>
-        <li >Delete</li>
+        <li>Delete</li>
     </ul>
 
     {
@@ -58,10 +58,7 @@ const TripList=()=>{
         <li>{el.destination}</li>
         <li>{el.members}</li>
         <li>{el.budget}</li>
-        <div  onClick={()=>{
-            deleteTrip(el._id)
-        }}><li>Delete</li></div>
-        
+        <li onClick={deleteTrip(el._id)}>Delete</li>
     </ul>
 
 })
