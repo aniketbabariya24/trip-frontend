@@ -1,6 +1,6 @@
-/* .App {
+.App {
   text-align: center;
-} */
+}
 
 .App-logo {
   height: 40vmin;
@@ -131,7 +131,7 @@
 
 .trips ul li{
   display: inline-block;
-  width: 140px;
+  width: 200px;
   border: 1px solid red;
   padding: 5px;
 }

@@ -25,9 +25,9 @@ const AddDetails=()=>{
    }
     return(
         <div>
-         <h1>Add Details</h1>
+
          <form className="form" id="addDetails">
-        <div className="title">Add Product</div>
+        <div className="title">Add Trip</div>
         <div className="input-container ic1">
           <input id="name" className="input" type="text" placeholder="Name" value={name}  onChange={(e)=>{setName(e.target.value)}}/>
         </div>
