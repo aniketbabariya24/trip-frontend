@@ -26,9 +26,16 @@ const TripList=()=>{
         getData();
      },[])
 
-    const deleteTrip=(id)=>{
-      
-    }
+     const deleteTrip=async(id)=>{
+        await fetch(`${url}/trips/delete/${id}`,{
+          method:'DELETE',
+          headers:{
+            'Content-Type': 'application/json'
+          }
+        });
+
+        getData();
+      }
 
     return(
         <div className='trips'>
@@ -39,7 +46,7 @@ const TripList=()=>{
         <li>Destination</li>
         <li>Members</li>
         <li>Budget</li>
-        <li>Delete</li>
+        <li >Delete</li>
     </ul>
 
     {
@@ -51,7 +58,10 @@ const TripList=()=>{
         <li>{el.destination}</li>
         <li>{el.members}</li>
         <li>{el.budget}</li>
-        <li onClick={deleteTrip(el._id)}>Delete</li>
+        <div  onClick={()=>{
+            deleteTrip(el._id)
+        }}><li>Delete</li></div>
+        
     </ul>
 
 })
