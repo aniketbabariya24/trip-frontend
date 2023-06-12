@@ -129,12 +129,47 @@
   text-align: center;
 }
 
-.trips ul li{
+.trips ul li, #el{
   display: inline-block;
   width: 200px;
   border: 1px solid red;
   padding: 5px;
 }
 .trips ul{
- margin: 0;
+ margin: 3px;
+}
+
+#el{
+  background-color: red;
+  color: white;
+}
+
+#el:hover{
+ cursor: pointer;
+}
+
+.navbar{
+  width: 100%;
+  height: 75px;
+  background-color: #08d;
+  color: #ffffff;
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+.elem{
+  border: 2px solid black;
+  background-color: rgb(129, 205, 255);
+}
+.elem a{
+  text-decoration: none;
+  color: black;
+}
+
+.elem:hover{
+  border: 2px solid black;
+  background-color: rgb(227, 242, 252);
 }

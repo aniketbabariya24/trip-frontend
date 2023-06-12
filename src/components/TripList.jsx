@@ -7,38 +7,84 @@ const TripList=()=>{
 
     let url="https://trip-g3sh.onrender.com"
 
-   
+    let tData;
+
      const getData=()=>{
         fetch(`${url}/trips`) .then((response)=>response.json())
         .then((response)=>{
           setTrips(response)
-    
-          console.log(response)
+    tData=response;
+        //   console.log(response)
         })
         .catch((error)=>{
           console.log(error)
         })
       
     }
-   
+
+     const deleteTrip=async(id)=>{
+      window.alert("Are you sure?")
+        await fetch(`${url}/trips/delete/${id}`,{
+          method:'DELETE',
+          headers:{
+            'Content-Type': 'application/json'
+          }
+        });
+
+        getData();
+      }
+    const budgetLow= async()=>{
+        try {
+          let myData= await fetch(`${url}/trips/budget/low`);
+        myData= await  myData.json();
+          console.log(myData)
+          setTrips(myData);
+           getData();
+        } catch (error) {
+            console.log("Error while fetching data");
+        }
+    }
+    //  const budgetHigh= async()=>{
+    //     try {
+    //          await fetch(`${url}/trips/budget/high`);
+    //        getData();
+    //     } catch (error) {
+    //         console.log("Error while fetching data");
+    //     }
+    // }
+    // const membersLow= async()=>{
+    //     try {
+    //          await fetch(`${url}/trips/members/low`);
+    //        getData();
+    //     } catch (error) {
+    //         console.log("Error while fetching data");
+    //     }
+    // }
+    //  const membersHigh= async()=>{
+    //     try {
+    //           await fetch(`${url}/trips/members/high`);
+    //        getData();
+    //     } catch (error) {
+    //         console.log("Error while fetching data");
+    //     }
+    // }
 
     useEffect(()=>{
         getData();
-     },[])
-
-    const deleteTrip=async(id)=>{
-      let res= await fetch(`${url}/trips/delete/${id}`,{
-        method:'DELETE',
-        headers:{
-          'Content-Type': 'application/json'
-        }
-      });
-      
-    }
-
+     },[getData])
     return(
-    //  <div> <button>H</button></div> 
         <div className='trips'>
+             {/* <select onchange="myPFChange()" id="myPf">       
+            <option value="">Select Category</option>
+            <option value="india">india</option>
+            <option value="europe">europe</option>
+            <option value="africa">africa</option>
+            <option value="america">america</option>
+          </select>    */}
+            <button onClick={budgetLow}>Budget:Low To High</button>
+            {/* <button onClick={budgetHigh}>Budget:High To Low</button>
+            <button onClick={membersLow}>Members:Low To High</button>
+            <button onClick={membersHigh}>Members:Low To High</button> */}
           <h1>All Trips</h1>
           <ul>
         <li>Name</li>
@@ -46,7 +92,7 @@ const TripList=()=>{
         <li>Destination</li>
         <li>Members</li>
         <li>Budget</li>
-        <li>Delete</li>
+        <li >Delete</li>
     </ul>
 
     {
@@ -58,7 +104,10 @@ const TripList=()=>{
         <li>{el.destination}</li>
         <li>{el.members}</li>
         <li>{el.budget}</li>
-        <li onClick={deleteTrip(el._id)}>Delete</li>
+        <div id='el' onClick={()=>{
+            deleteTrip(el._id)
+        }}>delete</div>
+        
     </ul>
 
 })

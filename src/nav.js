@@ -5,8 +5,8 @@ const Nav=()=>{
     return(
         <div>
           <ul className='navbar'>
-            <li><Link to="/add">Add Trips</Link></li>
-            <li><Link to="/see">See Trips</Link></li>
+            <li className='elem'><Link to="/add">Add Trips</Link></li>
+            <li className='elem'><Link to="/see">See Trips</Link></li>
           </ul>
         </div>
     )
